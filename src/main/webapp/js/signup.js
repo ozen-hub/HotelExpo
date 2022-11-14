@@ -9,5 +9,36 @@ function signup() {
        contact:$('#contact').val(),
        password:$('#password').val()
    }
-    console.log(user);
+
+    $.ajax({
+        url:'http://localhost:8000/user',
+        dataType: 'json',
+        type:'POST',
+        async:true,
+        data:user,
+        success:(response)=>{
+            console.log(response);
+        },
+        error:(error)=>{
+            console.log(error);
+        }
+    })
+
+
+/*let data='email='+user.email+'&first_name='+user.fName+'&last_name='+
+    user.lName+'&contact='+user.contact+'&password='+user.password;
+   $.ajax({
+       url:'http://localhost:8000/user?'+data,
+       dataType: 'json',
+       type:'POST',
+       async:true,
+       data:{},
+       success:(response)=>{
+           console.log(response);
+       },
+       error:(error)=>{
+           console.log(error);
+       }
+   })*/
+
 }
