@@ -1,5 +1,8 @@
 package servlet;
 
+import bo.BoFactory;
+import bo.custom.UserBo;
+import com.google.gson.Gson;
 import dto.UserDto;
 import dto.request.RequestUserDto;
 import jakarta.servlet.ServletException;
@@ -10,28 +13,29 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.stream.Collectors;
 
 @WebServlet("/user")
 public class UserServlet extends HttpServlet {
 
+    private UserBo userBo = BoFactory.getInstance().getBo(BoFactory.BoType.USER);
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String email = req.getParameter("email");
-        String fName = req.getParameter("first_name");
-        String lName = req.getParameter("last_name");
-        String contact = req.getParameter("contact");
-        String password = req.getParameter("password");
-        RequestUserDto requestUserDto = new RequestUserDto(
-                email,fName,lName,contact,password
-        );
-
+        RequestUserDto d = new Gson().fromJson(req.getReader(), RequestUserDto.class);
         UserDto userDto = new UserDto(
-                requestUserDto.getEmail(), requestUserDto.getfName(),
-                requestUserDto.getlName(), requestUserDto.getContact(),
-                requestUserDto.getPassword(),true
+                d.getEmail(),d.getfName(),d.getlName(),d.getContact(),d.getPassword(),true
         );
+        try {
+            if (userBo.createUser(userDto)){
+                resp.getWriter().println("<h1>Saved</h1>");
+            }else{
+                resp.getWriter().println("<h1>Saved</h1>");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
-        resp.getWriter().println("<h1>"+userDto+"</h1>");
     }
 
     @Override
