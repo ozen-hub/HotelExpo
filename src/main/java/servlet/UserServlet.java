@@ -1,5 +1,7 @@
 package servlet;
 
+import dto.UserDto;
+import dto.request.RequestUserDto;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -14,7 +16,22 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.getWriter().println("<h1>Do POST</h1>");
+        String email = req.getParameter("email");
+        String fName = req.getParameter("first_name");
+        String lName = req.getParameter("last_name");
+        String contact = req.getParameter("contact");
+        String password = req.getParameter("password");
+        RequestUserDto requestUserDto = new RequestUserDto(
+                email,fName,lName,contact,password
+        );
+
+        UserDto userDto = new UserDto(
+                requestUserDto.getEmail(), requestUserDto.getfName(),
+                requestUserDto.getlName(), requestUserDto.getContact(),
+                requestUserDto.getPassword(),true
+        );
+
+        resp.getWriter().println("<h1>"+userDto+"</h1>");
     }
 
     @Override
