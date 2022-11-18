@@ -9,15 +9,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="89f88754-a199-466a-977b-99e5ffbfc072" name="Changes" comment="6">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/dashboard.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/js/dashboard.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/styles/dashboard.scss" afterDir="false" />
+    <list default="true" id="89f88754-a199-466a-977b-99e5ffbfc072" name="Changes" comment="7">
+      <change afterPath="$PROJECT_DIR$/src/main/java/dto/response/LoginResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/HotelExpo_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/HotelExpo_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bo/custom/UserBo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bo/custom/UserBo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bo/custom/impl/UserBoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bo/custom/impl/UserBoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/custom/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/custom/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/custom/impl/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/custom/impl/UserDaoImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/servlet/UserServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlet/UserServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/js/signup.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/js/signup.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,10 +29,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="Jsp File" />
         <option value="SCSS File" />
         <option value="JavaScript File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -180,7 +181,7 @@
       <workItem from="1668491284035" duration="1244000" />
       <workItem from="1668574054839" duration="66000" />
       <workItem from="1668575438850" duration="1411000" />
-      <workItem from="1668779404203" duration="5614000" />
+      <workItem from="1668779404203" duration="7821000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1668446036458</created>
@@ -224,7 +225,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668783229092</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="7">
+      <created>1668785436135</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1668785436135</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -249,6 +257,7 @@
     <MESSAGE value="4" />
     <MESSAGE value="5" />
     <MESSAGE value="6" />
-    <option name="LAST_COMMIT_MESSAGE" value="6" />
+    <MESSAGE value="7" />
+    <option name="LAST_COMMIT_MESSAGE" value="7" />
   </component>
 </project>

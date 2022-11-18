@@ -56,9 +56,9 @@ public class UserServlet extends HttpServlet {
             RequestLoginDto d =
                     new Gson().fromJson(req.getReader(), RequestLoginDto.class);
             try{
-                String record = userBo.login(d.getEmail(),d.getPassword());
                 jsoObj=new Gson().toJson(
-                        new StandardResponse(200,"Successful",record)
+                        new StandardResponse(200,"Successful",
+                                userBo.login(d.getEmail(),d.getPassword()))
                 );
                 resp.getWriter().println(jsoObj);
             }catch (Exception e){

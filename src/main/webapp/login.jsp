@@ -74,10 +74,10 @@
             async:true,
             data:JSON.stringify(user),
             success:function (response){
-                console.log(response.code);
+                console.log(response);
                 if (response.code===200){
                     alert(response.message);
-                    window.location.replace('/dashboard.jsp');
+                    //window.location.replace('/dashboard.jsp');
                 }else{
                     alert(response.message);
                 }
