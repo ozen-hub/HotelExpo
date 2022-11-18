@@ -29,21 +29,25 @@
                     <%--save room--%>
                         <div class="container">
                             <div class="row">
-                                <div class="col-4">
+                                <div class="col-3">
                                     <label for="hotel">Hotel</label>
                                     <select id="hotel" class="form-control">
                                         <option value="1">Samntha Hotel</option>
                                         <option value="2">Jayantha Hotel</option>
                                     </select>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-3">
                                     <label for="deals">Hotel</label>
                                     <select id="deals" class="form-control">
                                         <option value="1">Available</option>
                                         <option value="0">Unavailable</option>
                                     </select>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-3">
+                                    <label for="type">Type</label>
+                                    <input type="text" id="type" class="form-control">
+                                </div>
+                                <div class="col-3">
                                     <label for="cost">Cost</label>
                                     <input type="number" id="cost" class="form-control">
                                 </div>
@@ -53,7 +57,7 @@
                                 </div>
                                 <div class="col-12" style="margin-top: 20px">
                                     <p style="text-align: right">
-                                        <button class="btn btn-primary">Save Room</button>
+                                        <button onclick="saveRoom()" class="btn btn-primary">Save Room</button>
                                     </p>
                                 </div>
                             </div>
@@ -85,5 +89,37 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="js/dashboard.js"></script>
+<script type="application/javascript">
+
+    function saveRoom() {
+        let room = {
+            type: $('#type').val(),
+            deals: $('#deals').val(),
+            description: $('#desc').val(),
+            hotel: $('#hotel').val(),
+            cost: $('#cost').val()
+        }
+        $.ajax({
+            url: 'http://localhost:8000/room?type=room',
+            dataType: 'json',
+            contentType: 'application/json',
+            type: 'POST',
+            async: true,
+            data: JSON.stringify(room),
+            success: function (response) {
+                console.log(response);
+                if (response.code === 201) {
+                    alert(response.message);
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        })
+
+    }
+</script>
 </body>
 </html>
