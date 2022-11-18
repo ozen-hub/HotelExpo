@@ -2,6 +2,7 @@ package servlet;
 
 import com.google.gson.Gson;
 import dao.CrudUtil;
+import dto.RequestImageDto;
 import dto.UserDto;
 import dto.request.RequestLoginDto;
 import dto.request.RequestRoomDto;
@@ -12,6 +13,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import util.IdGenerator;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 
 @WebServlet("/room")
@@ -51,6 +53,12 @@ public class Room extends HttpServlet {
                 );
                 response.getWriter().write(jsoObj);
             }
+        } else {
+            RequestImageDto d = new Gson().fromJson(request.getReader(), RequestImageDto.class);
+            response.setContentType("application/json");
+            FileInputStream fis = new FileInputStream(d.getImage());
+            //=====>
+            //
         }
     }
 }
