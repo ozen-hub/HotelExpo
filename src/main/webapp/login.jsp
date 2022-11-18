@@ -60,4 +60,33 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="js/login.js"></script>
+<script type="application/javascript">
+    function login() {
+        let user={
+            email:$('#email').val(),
+            password:$('#password').val()
+        }
+        $.ajax({
+            url:'http://localhost:8000/user?type=login',
+            dataType: 'json',
+            contentType:'application/json',
+            type:'POST',
+            async:true,
+            data:JSON.stringify(user),
+            success:function (response){
+                console.log(response.code);
+                if (response.code===200){
+                    alert(response.message);
+                    window.location.replace('/dashboard.jsp');
+                }else{
+                    alert(response.message);
+                }
+            },
+            error:(error)=>{
+                console.log(error);
+            }
+        })
+
+    }
+</script>
 </html>

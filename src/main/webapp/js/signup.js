@@ -21,6 +21,7 @@ function signup() {
             console.log(response.code);
             if (response.code===201){
                 alert(response.message);
+                window.location.replace('/dashboard.jsp');
             }else{
                 alert(response.message);
             }
@@ -29,22 +30,4 @@ function signup() {
             console.log(error);
         }
     })
-
-
-/*let data='email='+user.email+'&first_name='+user.fName+'&last_name='+
-    user.lName+'&contact='+user.contact+'&password='+user.password;
-   $.ajax({
-       url:'http://localhost:8000/user?'+data,
-       dataType: 'json',
-       type:'POST',
-       async:true,
-       data:{},
-       success:(response)=>{
-           console.log(response);
-       },
-       error:(error)=>{
-           console.log(error);
-       }
-   })*/
-
 }

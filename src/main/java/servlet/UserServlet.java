@@ -37,7 +37,7 @@ public class UserServlet extends HttpServlet {
                     jsoObj=new Gson().toJson(
                             new StandardResponse(201,"User saved!",null)
                     );
-                    resp.getWriter().println(jsoObj);
+                    resp.getWriter().write(jsoObj);
                 }else{
                     jsoObj=new Gson().toJson(
                             new StandardResponse(500,"Internal Server Error!",null)
@@ -62,6 +62,7 @@ public class UserServlet extends HttpServlet {
                 );
                 resp.getWriter().println(jsoObj);
             }catch (Exception e){
+                e.printStackTrace();
                 jsoObj=new Gson().toJson(
                         new StandardResponse(500,e.getMessage(),e)
                 );
