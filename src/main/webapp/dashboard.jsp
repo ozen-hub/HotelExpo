@@ -25,7 +25,42 @@
             </h2>
             <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                    <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+
+                    <%--save room--%>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-4">
+                                    <label for="hotel">Hotel</label>
+                                    <select id="hotel" class="form-control">
+                                        <option value="1">Samntha Hotel</option>
+                                        <option value="2">Jayantha Hotel</option>
+                                    </select>
+                                </div>
+                                <div class="col-4">
+                                    <label for="deals">Hotel</label>
+                                    <select id="deals" class="form-control">
+                                        <option value="1">Available</option>
+                                        <option value="0">Unavailable</option>
+                                    </select>
+                                </div>
+                                <div class="col-4">
+                                    <label for="cost">Cost</label>
+                                    <input type="number" id="cost" class="form-control">
+                                </div>
+                                <div class="col-12" style="margin-top: 20px">
+                                    <label for="desc">Description</label>
+                                    <textarea id="desc" rows="4" class="form-control"></textarea>
+                                </div>
+                                <div class="col-12" style="margin-top: 20px">
+                                    <p style="text-align: right">
+                                        <button class="btn btn-primary">Save Room</button>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    <%--save room--%>
+
+
                 </div>
             </div>
         </div>
