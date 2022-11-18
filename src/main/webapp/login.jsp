@@ -35,13 +35,15 @@
                             <input type="password" id="password" class="form-control" placeholder="password">
                         </div>
                         <div class="col-12">
-                            <input type="button" onclick="login()" value="Login" class="btn btn-primary" style="width: 100%">
+                            <input type="button" onclick="login()" value="Login" class="btn btn-primary"
+                                   style="width: 100%">
                         </div>
                         <div class="col-12">
                             <hr>
                         </div>
                         <div class="col-12">
-                            <input type="button" onclick="navigateToSignup()" value="Create an Account" class="btn btn-dark" style="width: 100%">
+                            <input type="button" onclick="navigateToSignup()" value="Create an Account"
+                                   class="btn btn-dark" style="width: 100%">
                         </div>
                     </div>
                 </form>
@@ -61,28 +63,37 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="js/login.js"></script>
 <script type="application/javascript">
+    function isLoggedIn() {
+        if (localStorage.getItem('token')) {
+            window.location.replace('/dashboard.jsp');
+        }
+    }
+
+    isLoggedIn();
+
     function login() {
-        let user={
-            email:$('#email').val(),
-            password:$('#password').val()
+        let user = {
+            email: $('#email').val(),
+            password: $('#password').val()
         }
         $.ajax({
-            url:'http://localhost:8000/user?type=login',
+            url: 'http://localhost:8000/user?type=login',
             dataType: 'json',
-            contentType:'application/json',
-            type:'POST',
-            async:true,
-            data:JSON.stringify(user),
-            success:function (response){
+            contentType: 'application/json',
+            type: 'POST',
+            async: true,
+            data: JSON.stringify(user),
+            success: function (response) {
                 console.log(response);
-                if (response.code===200){
+                if (response.code === 200) {
                     alert(response.message);
-                    //window.location.replace('/dashboard.jsp');
-                }else{
+                    localStorage.setItem('token', response.data.token);
+                    window.location.replace('/dashboard.jsp');
+                } else {
                     alert(response.message);
                 }
             },
-            error:(error)=>{
+            error: (error) => {
                 console.log(error);
             }
         })
