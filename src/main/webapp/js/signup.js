@@ -11,13 +11,13 @@ function signup() {
    }
 
     $.ajax({
-        url:'http://localhost:8000/user',
+        url:'http://localhost:8000/user?type=signup',
         dataType: 'json',
         contentType:'application/json',
         type:'POST',
         async:true,
         data:JSON.stringify(user),
-        success:(response)=>{
+        success:function (response){
             console.log(response.code);
             if (response.code===201){
                 alert(response.message);

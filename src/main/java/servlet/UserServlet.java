@@ -4,6 +4,7 @@ import bo.BoFactory;
 import bo.custom.UserBo;
 import com.google.gson.Gson;
 import dto.UserDto;
+import dto.request.RequestLoginDto;
 import dto.request.RequestUserDto;
 import dto.response.StandardResponse;
 import jakarta.servlet.ServletException;
@@ -22,31 +23,50 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestUserDto d = new Gson().fromJson(req.getReader(), RequestUserDto.class);
-        UserDto userDto = new UserDto(
-                d.getEmail(),d.getfName(),d.getlName(),d.getContact(),d.getPassword(),true
-        );
 
-        // api/v1/customer ==> (xml,json)
-        resp.setContentType("application/json");
-        String jsoObj="";
-        try {
-            if (userBo.createUser(userDto)){
+        if(req.getParameter("type").equals("signup")){
+            RequestUserDto d = new Gson().fromJson(req.getReader(), RequestUserDto.class);
+            UserDto userDto = new UserDto(
+                    d.getEmail(),d.getfName(),d.getlName(),d.getContact(),d.getPassword(),true
+            );
+            // api/v1/customer ==> (xml,json)
+            resp.setContentType("application/json");
+            String jsoObj="";
+            try {
+                if (userBo.createUser(userDto)){
+                    jsoObj=new Gson().toJson(
+                            new StandardResponse(201,"User saved!",null)
+                    );
+                    resp.getWriter().println(jsoObj);
+                }else{
+                    jsoObj=new Gson().toJson(
+                            new StandardResponse(500,"Internal Server Error!",null)
+                    );
+                    resp.getWriter().write(jsoObj);
+                }
+            }catch (Exception e){
                 jsoObj=new Gson().toJson(
-                        new StandardResponse(201,"User saved!",null)
-                );
-                resp.getWriter().write(jsoObj);
-            }else{
-                jsoObj=new Gson().toJson(
-                        new StandardResponse(500,"Internal Server Error!",null)
+                        new StandardResponse(500,e.getMessage(),e)
                 );
                 resp.getWriter().write(jsoObj);
             }
-        }catch (Exception e){
-            jsoObj=new Gson().toJson(
-                    new StandardResponse(500,e.getMessage(),e)
-            );
-            resp.getWriter().write(jsoObj);
+        }else{
+            resp.setContentType("application/json");
+            String jsoObj="";
+            RequestLoginDto d =
+                    new Gson().fromJson(req.getReader(), RequestLoginDto.class);
+            try{
+                String record = userBo.login(d.getEmail(),d.getPassword());
+                jsoObj=new Gson().toJson(
+                        new StandardResponse(200,"Successful",record)
+                );
+                resp.getWriter().println(jsoObj);
+            }catch (Exception e){
+                jsoObj=new Gson().toJson(
+                        new StandardResponse(500,e.getMessage(),e)
+                );
+                resp.getWriter().write(jsoObj);
+            }
         }
     }
 

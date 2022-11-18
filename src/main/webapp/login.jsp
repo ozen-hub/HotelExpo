@@ -26,16 +26,16 @@
             <div class="details-outer">
                 <h3 class="title-data">Welcome Back</h3>
 
-                <form action="" style="width: 100%">
+                <form action="#" style="width: 100%">
                     <div class="row" style="margin: 0">
                         <div class="col-12">
-                            <input type="text" class="form-control" placeholder="email">
+                            <input type="text" id="email" class="form-control" placeholder="email">
                         </div>
                         <div class="col-12">
-                            <input type="password" class="form-control" placeholder="password">
+                            <input type="password" id="password" class="form-control" placeholder="password">
                         </div>
                         <div class="col-12">
-                            <input type="button" value="Login" class="btn btn-primary" style="width: 100%">
+                            <input type="button" onclick="login()" value="Login" class="btn btn-primary" style="width: 100%">
                         </div>
                         <div class="col-12">
                             <hr>
@@ -58,5 +58,6 @@
 <jsp:include page="MainFooter.jsp"/>
 <%--footer--%>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="js/login.js"></script>
 </html>
