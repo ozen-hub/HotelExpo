@@ -82,16 +82,21 @@
                 <div class="accordion-body">
                     <div class="container">
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-12" style="margin-bottom: 10px">
+                                <label for="room">Room</label>
+                                <input type="text" class="form-control" id="room">
+                            </div>
+                            <div class="col-12" style="margin-bottom: 10px">
                                 <input type="file" id="file">
                             </div>
-                            <div class="col-12">
+                            <div class="col-12" style="margin-bottom: 10px">
                                 <img src="" alt="" style="width: 200px" id="selected-image"
                                      class="img-thumbnail">
                             </div>
                             <div class="col-12">
                                 <p style="text-align: right">
-                                    <button type="button" class="btn btn-primary"> Upload Image</button>
+                                    <button type="button" onclick="saveImage()" class="btn btn-primary"> Upload Image
+                                    </button>
                                 </p>
                             </div>
                         </div>
@@ -111,9 +116,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script src="js/dashboard.js"></script>
 <script type="application/javascript">
-
+    let imageData;
     function setImage(data) {
         if (data.files && data.files[0]) {
+            imageData=data.files[0];
             let reader = new FileReader();
             reader.onload = (e) => {
                 $('#selected-image').attr('src', e.target.result);
@@ -122,10 +128,53 @@
         }
     }
 
+
     $('#file').change(function () {
         setImage(this);
     })
 
+    function saveImage() {
+       /* let formData = new FormData();
+        formData.append("image", imageData);
+        let image = {
+            image: formData
+        }
+        $.ajax({
+            url: 'http://localhost:8000/room?type=image&id=' + $('#room').val(),
+            dataType: 'json',
+            contentType: 'application/json',
+            type: 'POST',
+            async: true,
+            data: image,
+            body:image,
+            success: function (response) {
+                console.log(response);
+                if (response.code === 201) {
+                    alert(response.message);
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: (error) => {
+                console.log(error);
+            }
+        })
+*/
+
+       let data = new FormData();
+        data.append( 'image', $('#file')[0].files[0] );
+
+        $.ajax({
+            url: 'http://localhost:8000/room?type=image',
+            data: data,
+            processData: false,
+            type: 'POST',
+            success: function ( data ) {
+                alert( data );
+            }
+        });
+
+    }
 
     function saveRoom() {
         let room = {
