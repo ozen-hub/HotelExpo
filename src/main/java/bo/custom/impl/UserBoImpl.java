@@ -1,5 +1,6 @@
 package bo.custom.impl;
 
+import adviser.UnAuthorizedException;
 import bo.custom.UserBo;
 import dao.DaoFactory;
 import dao.custom.UserDao;
@@ -22,7 +23,7 @@ public class UserBoImpl implements UserBo {
     }
 
     @Override
-    public LoginResponseDto login(String email, String password) throws SQLException, ClassNotFoundException {
+    public LoginResponseDto login(String email, String password) throws SQLException, ClassNotFoundException,UnAuthorizedException {
         return userDao.login(email,password);
     }
 }

@@ -1,10 +1,12 @@
 package dao.custom.impl;
 
+import adviser.UnAuthorizedException;
 import dao.CrudUtil;
 import dao.custom.UserDao;
 import dto.response.LoginResponseDto;
 import entity.User;
 import io.jsonwebtoken.Jwts;
+import util.EncryptionConfig;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -20,7 +22,7 @@ public class UserDaoImpl implements UserDao {
         return CrudUtil.execute(
                 "INSERT INTO User VALUES(?,?,?,?,?,?)",
                 user.getEmail(),user.getfName(),user.getlName(),user.getContact(),
-                user.getPassword(),user.isActiveState()
+                EncryptionConfig.encrypt(user.getPassword()),user.isActiveState()
         );
     }
 
@@ -45,31 +47,33 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public LoginResponseDto login(String email, String password) throws SQLException, ClassNotFoundException {
+    public LoginResponseDto login(String email, String password) throws SQLException, ClassNotFoundException, UnAuthorizedException {
         ResultSet set =  CrudUtil.execute(
-                "SELECT * FROM User WHERE email=? AND password=?",
-                email,password
+                "SELECT * FROM User WHERE email=?",
+                email
         );
         if(set.next()){
-            // token===================
-            // encrypt ===> algorithm
-            // token ==> (public(client) private(server))
-            // token===================
-            String token = Jwts.builder()
-                    .claim("name",set.getString(2)+" "+set.getString(3))
-                    .claim("email",set.getString(1))
-                    .setId(UUID.randomUUID().toString())
-                    .setIssuedAt(Date.from(Instant.now()))
-                    .setExpiration(Date.from(Instant.now().plus(24, ChronoUnit.HOURS)))
-                    .compact();
+            if(EncryptionConfig.decrypt(password,set.getString(5))){
+                String token = Jwts.builder()
+                        .claim("name",set.getString(2)+" "+set.getString(3))
+                        .claim("email",set.getString(1))
+                        .setId(UUID.randomUUID().toString())
+                        .setIssuedAt(Date.from(Instant.now()))
+                        .setExpiration(Date.from(Instant.now().plus(24, ChronoUnit.HOURS)))
+                        .compact();
 
 
-            return new LoginResponseDto(
-                    set.getString(2)+" "+set.getString(3),
-                    set.getString(1),token
-            );
+                return new LoginResponseDto(
+                        set.getString(2)+" "+set.getString(3),
+                        set.getString(1),token
+                );
+            }else{
+                throw new UnAuthorizedException("Password is Wrong!");
+            }
         }else{
             throw new ClassNotFoundException();
         }
     }
+
 }
+
