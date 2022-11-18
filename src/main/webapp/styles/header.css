@@ -25,6 +25,7 @@
 .outer .right {
   justify-content: flex-end;
 }
+
 .outer button {
   background-color: #c0392b;
   padding: 8px 15px;

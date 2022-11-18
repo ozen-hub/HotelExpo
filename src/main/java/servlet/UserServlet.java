@@ -5,6 +5,7 @@ import bo.custom.UserBo;
 import com.google.gson.Gson;
 import dto.UserDto;
 import dto.request.RequestUserDto;
+import dto.response.StandardResponse;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -17,7 +18,6 @@ import java.util.stream.Collectors;
 
 @WebServlet("/user")
 public class UserServlet extends HttpServlet {
-
     private UserBo userBo = BoFactory.getInstance().getBo(BoFactory.BoType.USER);
 
     @Override
@@ -26,16 +26,28 @@ public class UserServlet extends HttpServlet {
         UserDto userDto = new UserDto(
                 d.getEmail(),d.getfName(),d.getlName(),d.getContact(),d.getPassword(),true
         );
+
+        // api/v1/customer ==> (xml,json)
+        resp.setContentType("application/json");
+        String jsoObj="";
         try {
             if (userBo.createUser(userDto)){
-                resp.getWriter().println("<h1>Saved</h1>");
+                jsoObj=new Gson().toJson(
+                        new StandardResponse(201,"User saved!",null)
+                );
+                resp.getWriter().write(jsoObj);
             }else{
-                resp.getWriter().println("<h1>Saved</h1>");
+                jsoObj=new Gson().toJson(
+                        new StandardResponse(500,"Internal Server Error!",null)
+                );
+                resp.getWriter().write(jsoObj);
             }
         }catch (Exception e){
-            e.printStackTrace();
+            jsoObj=new Gson().toJson(
+                    new StandardResponse(500,e.getMessage(),e)
+            );
+            resp.getWriter().write(jsoObj);
         }
-
     }
 
     @Override

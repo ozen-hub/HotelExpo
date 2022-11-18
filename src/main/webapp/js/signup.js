@@ -18,7 +18,12 @@ function signup() {
         async:true,
         data:JSON.stringify(user),
         success:(response)=>{
-            console.log(response);
+            console.log(response.code);
+            if (response.code===201){
+                alert(response.message);
+            }else{
+                alert(response.message);
+            }
         },
         error:(error)=>{
             console.log(error);
