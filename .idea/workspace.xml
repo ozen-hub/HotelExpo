@@ -9,7 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="89f88754-a199-466a-977b-99e5ffbfc072" name="Changes" comment="14">
+    <list default="true" id="89f88754-a199-466a-977b-99e5ffbfc072" name="Changes" comment="15">
       <change beforePath="$PROJECT_DIR$/src/main/webapp/dashboard.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/dashboard.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -200,7 +200,7 @@
       <workItem from="1668491284035" duration="1244000" />
       <workItem from="1668574054839" duration="66000" />
       <workItem from="1668575438850" duration="1411000" />
-      <workItem from="1668779404203" duration="16195000" />
+      <workItem from="1668779404203" duration="16794000" />
     </task>
     <task id="LOCAL-00001" summary="1">
       <created>1668446036458</created>
@@ -300,7 +300,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668795637232</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="15">
+      <created>1668796139651</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1668796139651</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -333,6 +340,7 @@
     <MESSAGE value="12" />
     <MESSAGE value="13" />
     <MESSAGE value="14" />
-    <option name="LAST_COMMIT_MESSAGE" value="14" />
+    <MESSAGE value="15" />
+    <option name="LAST_COMMIT_MESSAGE" value="15" />
   </component>
 </project>
