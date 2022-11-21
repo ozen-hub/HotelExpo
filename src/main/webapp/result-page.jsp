@@ -108,109 +108,10 @@
         </div>
         <div class="right-outer context col-9">
             <p class="alert alert-dark">
-                2500 Properties Found
+                <span id="data-count"></span> Properties Found
             </p>
             <div class="result-outer">
-                <div class="result-inner">
-                    <div class="result-inner-left">
-                        <img class="img-thumbnail"
-                        src="https://images.unsplash.com/photo-1615460549969-36fa19521a4f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzl8fGhvdGVsfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
-                        alt="">
-                    </div>
-                    <div class="result-inner-right">
-                        <div class="details">
-                            <h4>The Summit</h4>
-                            <p class="desc">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam cupiditate expedita
-                                illum, itaque maxime praesentium voluptates! Adipisci asperiores autem commodi ducimus
-                                id odio omnis, quam temporibus tenetur totam vero voluptatum.
-                            </p>
-                            <p class="alert alert-danger">
-                                Deals are available
-                            </p>
-                        </div>
-                        <div class="button">
-                            <button class="btn btn-primary btn-sm">
-                                Book Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="result-inner">
-                    <div class="result-inner-left">
-                        <img class="img-thumbnail"
-                             src="https://images.unsplash.com/photo-1615460549969-36fa19521a4f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzl8fGhvdGVsfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
-                             alt="">
-                    </div>
-                    <div class="result-inner-right">
-                        <div class="details">
-                            <h4>The Summit</h4>
-                            <p class="desc">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam cupiditate expedita
-                                illum, itaque maxime praesentium voluptates! Adipisci asperiores autem commodi ducimus
-                                id odio omnis, quam temporibus tenetur totam vero voluptatum.
-                            </p>
-                            <p class="alert alert-danger">
-                                Deals are available
-                            </p>
-                        </div>
-                        <div class="button">
-                            <button class="btn btn-primary btn-sm">
-                                Book Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="result-inner">
-                    <div class="result-inner-left">
-                        <img class="img-thumbnail"
-                             src="https://images.unsplash.com/photo-1615460549969-36fa19521a4f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzl8fGhvdGVsfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
-                             alt="">
-                    </div>
-                    <div class="result-inner-right">
-                        <div class="details">
-                            <h4>The Summit</h4>
-                            <p class="desc">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam cupiditate expedita
-                                illum, itaque maxime praesentium voluptates! Adipisci asperiores autem commodi ducimus
-                                id odio omnis, quam temporibus tenetur totam vero voluptatum.
-                            </p>
-                            <p class="alert alert-danger">
-                                Deals are available
-                            </p>
-                        </div>
-                        <div class="button">
-                            <button class="btn btn-primary btn-sm">
-                                Book Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="result-inner">
-                    <div class="result-inner-left">
-                        <img class="img-thumbnail"
-                             src="https://images.unsplash.com/photo-1615460549969-36fa19521a4f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzl8fGhvdGVsfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
-                             alt="">
-                    </div>
-                    <div class="result-inner-right">
-                        <div class="details">
-                            <h4>The Summit</h4>
-                            <p class="desc">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam cupiditate expedita
-                                illum, itaque maxime praesentium voluptates! Adipisci asperiores autem commodi ducimus
-                                id odio omnis, quam temporibus tenetur totam vero voluptatum.
-                            </p>
-                            <p class="alert alert-danger">
-                                Deals are available
-                            </p>
-                        </div>
-                        <div class="button">
-                            <button class="btn btn-primary btn-sm">
-                                Book Now
-                            </button>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
@@ -236,12 +137,50 @@
         type: 'GET',
         async: true,
         success: function (response) {
-            console.log(response);
-            if (response.code === 200) {
-                console.log(response);
+            console.log(response.data);
+            /*if (response.code === 200) {
+                $('#data-count').innerText=response.data.dataCount;
+                console.log(response.data.dataCount);
+                let html='';
+                if (response.data.hotels){
+                    for(let d of response.data.hotels){
+                        console.log('##');
+                        console.log(response.data.hotels);
+                    /!*    html+=`
+                    <div class="result-inner">
+                    <div class="result-inner-left">
+                        <img class="img-thumbnail"
+                        src="https://images.unsplash.com/photo-1615460549969-36fa19521a4f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzl8fGhvdGVsfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
+                        alt="">
+                    </div>
+                    <div class="result-inner-right">
+                        <div class="details">
+                            <h4>'+d.name+</h4>
+                            <p class="desc">
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam cupiditate expedita
+                                illum, itaque maxime praesentium voluptates! Adipisci asperiores autem commodi ducimus
+                                id odio omnis, quam temporibus tenetur totam vero voluptatum.
+                            </p>
+                            <p class="alert alert-danger">
+                                Deals are available
+                            </p>
+                        </div>
+                        <div class="button">
+                            <button class="btn btn-primary btn-sm" onClick="book();">
+                                Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                    `;*!/
+                    }
+
+                    $('.result-outer').innerHTML=html;
+
+                }
             } else {
                 alert(response.message);
-            }
+            }*/
         },
         error: (error) => {
             console.log(error);

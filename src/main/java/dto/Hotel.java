@@ -16,6 +16,6 @@ public class Hotel {
     private ArrayList address;
     private boolean activeState;
     private ArrayList location;
-    private String designation;
+    private String destination;
     private String type;
 }
