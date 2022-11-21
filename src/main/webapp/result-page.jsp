@@ -110,7 +110,7 @@
             <p class="alert alert-dark">
                 <span id="data-count"></span> Properties Found
             </p>
-            <div class="result-outer">
+            <div class="result-outer" id="data-set">
 
             </div>
         </div>
@@ -129,7 +129,6 @@
 <script src="./js/home.js"></script>
 <script type="application/javascript">
     let destination = '<%=request.getParameter("location")%>';
-
     $.ajax({
         url: 'http://localhost:8000/room?type=list&location='+destination,
         dataType: 'json',
@@ -137,17 +136,13 @@
         type: 'GET',
         async: true,
         success: function (response) {
-            console.log(response.data);
-            /*if (response.code === 200) {
-                $('#data-count').innerText=response.data.dataCount;
-                console.log(response.data.dataCount);
-                let html='';
-                if (response.data.hotels){
-                    for(let d of response.data.hotels){
-                        console.log('##');
-                        console.log(response.data.hotels);
-                    /!*    html+=`
-                    <div class="result-inner">
+            console.log(response.data.hotels);
+            $('#data-count').text(response.data.dataCount+'');
+            console.log(response.data.dataCount);
+            for(let d of response.data.hotels){
+                console.log(response.data.hotels);
+                $('#data-set').append(
+                    `<div class="result-inner">
                     <div class="result-inner-left">
                         <img class="img-thumbnail"
                         src="https://images.unsplash.com/photo-1615460549969-36fa19521a4f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mzl8fGhvdGVsfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
@@ -155,7 +150,7 @@
                     </div>
                     <div class="result-inner-right">
                         <div class="details">
-                            <h4>'+d.name+</h4>
+                            <h4>`+d.name+`</h4>
                             <p class="desc">
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam cupiditate expedita
                                 illum, itaque maxime praesentium voluptates! Adipisci asperiores autem commodi ducimus
@@ -171,16 +166,10 @@
                             </button>
                         </div>
                     </div>
-                </div>
-                    `;*!/
-                    }
+                </div>`
+                );
 
-                    $('.result-outer').innerHTML=html;
-
-                }
-            } else {
-                alert(response.message);
-            }*/
+            }
         },
         error: (error) => {
             console.log(error);
