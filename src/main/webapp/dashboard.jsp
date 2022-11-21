@@ -162,8 +162,9 @@
 */
 
        let data = new FormData();
-        data.append( 'image', $('#file')[0].files[0] );
-
+        data.append( 'image',imageData );
+        console.log(data);
+        console.log(imageData);
         $.ajax({
             url: 'http://localhost:8000/room?type=image',
             data: data,

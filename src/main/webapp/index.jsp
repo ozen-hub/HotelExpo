@@ -34,6 +34,7 @@
             <div class="row">
                 <div class="col-4 box">
                     <input type="search"
+                           name="location"
                            placeholder="Search here"
                            class="search-outer">
                 </div>
@@ -47,14 +48,14 @@
                 </div>
                 <div class="col-3 box special-outer">
                     <div class="special-input-outer">
-                        <select name="">
+                        <select name="adults">
                             <option value="1">1 Adult</option>
                             <option value="2">2 Adults</option>
                             <option value="3">3 Adults</option>
                         </select>
                     </div>
                     <div class="special-input-outer">
-                        <select name="">
+                        <select name="child">
                             <option value="0">0 Child</option>
                             <option value="1">1 Child</option>
                             <option value="2">2 Child</option>
@@ -62,7 +63,7 @@
                         </select>
                     </div>
                     <div class="special-input-outer">
-                        <select name="">
+                        <select name="room">
                             <option value="1">1 Room</option>
                             <option value="2">2 Rooms</option>
                             <option value="3">3 Rooms</option>

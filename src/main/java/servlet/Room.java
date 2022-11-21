@@ -2,6 +2,7 @@ package servlet;
 
 import com.google.gson.Gson;
 import dao.CrudUtil;
+import db.DBConnection;
 import dto.RequestImageDto;
 import dto.UserDto;
 import dto.request.RequestLoginDto;
@@ -13,8 +14,11 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import util.IdGenerator;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 @WebServlet("/room")
 public class Room extends HttpServlet {
@@ -54,9 +58,13 @@ public class Room extends HttpServlet {
                 response.getWriter().write(jsoObj);
             }
         } else {
-            RequestImageDto d = new Gson().fromJson(request.getReader(), RequestImageDto.class);
+            Part filePart = request.getPart("image");
+            String submittedFileName = filePart.getSubmittedFileName();
+            System.out.println(submittedFileName);
+           /* RequestImageDto d = new Gson().fromJson(request.getReader(), RequestImageDto.class);
             response.setContentType("application/json");
             FileInputStream fis = new FileInputStream(d.getImage());
+            System.out.println(d);*/
             //=====>
             //
         }
