@@ -25,6 +25,16 @@
 <jsp:include page="MainHader.jsp"/>
 <%--header--%>
 
+<%--
+// jquery ==>>>>>>>>>>>
+--%>
+<%--
+<%
+    System.out.println(request.getParameter("location"));
+%>
+--%>
+
+
 <%--content--%>
 <div class="main-outer">
     <div class="row" style="margin: 0">
@@ -216,5 +226,28 @@
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"
         integrity="sha256-eTyxS0rkjpLEo16uXTS0uVCS4815lc40K2iVpWDvdSY=" crossorigin="anonymous"></script>
 <script src="./js/home.js"></script>
+<script type="application/javascript">
+    let destination = '<%=request.getParameter("location")%>';
+
+    $.ajax({
+        url: 'http://localhost:8000/room?type=list&location='+destination,
+        dataType: 'json',
+        contentType: 'application/json',
+        type: 'GET',
+        async: true,
+        success: function (response) {
+            console.log(response);
+            if (response.code === 200) {
+                console.log(response);
+            } else {
+                alert(response.message);
+            }
+        },
+        error: (error) => {
+            console.log(error);
+        }
+    })
+
+</script>
 </body>
 </html>
